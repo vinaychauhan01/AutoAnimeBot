@@ -61,7 +61,8 @@ class SubsPlease:
         d1080, d720, d480 = self.rss_feed_data()
         if not d1080 or not d720 or not d480:
             return None
-        for i in range(2, -1, -1):
+        min_len = min(len(d1080.entries), len(d720.entries), len(d480.entries))
+        for i in range(min(3, min_len) - 1, -1, -1):
             try:
                 f1080, f720, f480 = d1080.entries[i], d720.entries[i], d480.entries[i]
                 a1080, a720, a480 = (
